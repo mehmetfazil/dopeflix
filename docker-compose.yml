@@ -11,3 +11,13 @@ services:
         command:
             --auth-type http
             --auth-http ${AUTH}
+
+    cloud-torrent:
+        image: jpillora/cloud-torrent
+        container_name: cloud-torrent
+        restart: unless-stopped
+        network_mode: "host"
+        volumes:
+            - '${DOWNLOADS}:/downloads'
+        command:
+            --auth ${AUTH}
