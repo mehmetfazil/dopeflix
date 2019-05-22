@@ -26,9 +26,19 @@ services:
         image: jpillora/cloud-torrent
         container_name: cloud-torrent
         restart: always
-        network_mode: "host"
+        networks:
+            - web
+            - default
+        expose:
+            - 3000
         volumes:
             - '${MEDIA}:/downloads'
+        labels:
+            - 'traefik.backend=cloud-torrent'
+            - 'traefik.enable=true'
+            - 'traefik.frontend.rule=Host:torrent.${URL}'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=3000'
         command:
             --auth ${AUTH}
 
