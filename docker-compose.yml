@@ -14,7 +14,7 @@ services:
             - '${MEDIA}:/app/public'
         labels:
             - 'traefik.backend=gohttpserver'
-            - 'traefik.enabled=true'
+            - 'traefik.enable=true'
             - 'traefik.frontend.rule=Host:files.${URL}'
             - 'traefik.docker.network=web'
             - 'traefik.port=8000'
