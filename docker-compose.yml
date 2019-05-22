@@ -7,7 +7,7 @@ services:
         restart: unless-stopped
         network_mode: "host"
         volumes:
-            - '${HOME}:/app/public'
+            - '${MEDIA}:/app/public'
         command:
             --auth-type http
             --auth-http ${AUTH}
