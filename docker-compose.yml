@@ -5,9 +5,19 @@ services:
         image: codeskyblue/gohttpserver
         container_name: gohttpserver
         restart: always
-        network_mode: "host"
+        networks:
+            - web
+            - default
+        expose:
+            - 8000
         volumes:
             - '${MEDIA}:/app/public'
+        labels:
+            - 'traefik.backend=gohttpserver'
+            - 'traefik.enabled=true'
+            - 'traefik.frontend.rule=Host:files.${URL}'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=8000'
         command:
             --auth-type http
             --auth-http ${AUTH}
