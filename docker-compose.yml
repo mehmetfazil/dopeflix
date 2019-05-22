@@ -31,3 +31,7 @@ services:
             - '${JELLYFIN_CONFIG}:/config'
             - '${JELLYFIN_CACHE}:/cache'
             - '${MEDIA}:/media'
+
+networks:
+    web:
+        external: true
