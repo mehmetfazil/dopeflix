@@ -1,0 +1,13 @@
+version: '3.5'
+
+services:
+    gohttpserver:
+        image: codeskyblue/gohttpserver
+        container_name: gohttpserver
+        restart: unless-stopped
+        network_mode: "host"
+        volumes:
+            - '${HOME}:/app/public'
+        command:
+            --auth-type http
+            --auth-http ${AUTH}
