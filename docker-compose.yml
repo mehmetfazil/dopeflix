@@ -5,6 +5,7 @@ services:
         image: codeskyblue/gohttpserver
         container_name: gohttpserver
         restart: always
+        user: '1000:1000'
         networks:
             - web
             - default
@@ -26,6 +27,7 @@ services:
         image: jpillora/cloud-torrent
         container_name: cloud-torrent
         restart: always
+        user: '1000:1000'
         networks:
             - web
             - default
