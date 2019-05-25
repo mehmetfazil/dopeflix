@@ -58,7 +58,7 @@ services:
         labels:
             - 'traefik.backend=jellyfin'
             - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:netflix.${URL}'
+            - 'traefik.frontend.rule=Host:${URL}'
             - 'traefik.docker.network=web'
             - 'traefik.port=8096'
  
