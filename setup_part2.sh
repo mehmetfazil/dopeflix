@@ -1,5 +1,6 @@
 #!/bin/bash
  
 docker network create web
-mkdir -p /home/ubuntu/traefik
-touch /home/ubuntu/traefik/acme.json && chmod 600 /home/ubuntu/traefik/acme.json
+touch /home/ubuntu/dopeflix/traefik/acme.json
+chmod 600 /home/ubuntu/dopeflix/traefik/acme.json
+mkdir -p /home/ubuntu/media
