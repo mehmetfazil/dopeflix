@@ -58,6 +58,23 @@ services:
         command:
             --auth ${AUTH}
 
+    rapidbay:
+        image: hauxir/rapidbay
+        container_name: rapidbay
+        restart: always
+        user: '1000:1000'
+        networks:
+            - web
+            - default
+        expose:
+            - 5000
+        labels:
+            - 'traefik.backend=rapidbay'
+            - 'traefik.enable=true'
+            - 'traefik.frontend.rule=Host:tv.${URL}'
+            - 'traefik.docker.network=web'
+            - 'traefik.port=5000'
+
     gohttpserver:
         image: codeskyblue/gohttpserver
         container_name: gohttpserver
@@ -80,30 +97,7 @@ services:
             --auth-type http
             --auth-http ${AUTH}
             --upload
-    
-    netdata:
-        image: netdata/netdata
-        container_name: netdata
-        restart: always
-        hostname: monitor.dopeflix.xyz # set to fqdn of host
-        ports:
-          - 19999:19999
-        cap_add:
-          - SYS_PTRACE
-        security_opt:
-          - apparmor:unconfined
-        volumes:
-          - /etc/passwd:/host/etc/passwd:ro
-          - /etc/group:/host/etc/group:ro
-          - /proc:/host/proc:ro
-          - /sys:/host/sys:ro   
-        labels:
-            - 'traefik.backend=netdata'
-            - 'traefik.enable=true'
-            - 'traefik.frontend.rule=Host:monitor.${URL}'
-            - 'traefik.docker.network=web'
-            - 'traefik.port=19999'  
- 
+
 networks:
     web:
         external: true
